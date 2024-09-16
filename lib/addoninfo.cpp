@@ -44,14 +44,17 @@ static std::string getFullPath(const std::string &fileName, const std::string &e
         return exepath + "addons/" + fileName;
 
 #ifdef FILESDIR
-    if (debug)
-        std::cout << "looking for addon '" << (FILESDIR + ("/" + fileName)) << "'" << std::endl;
-    if (Path::isFile(FILESDIR + ("/" + fileName)))
-        return FILESDIR + ("/" + fileName);
-    if (debug)
-        std::cout << "looking for addon '" << (FILESDIR + ("/addons/" + fileName)) << "'" << std::endl;
-    if (Path::isFile(FILESDIR + ("/addons/" + fileName)))
-        return FILESDIR + ("/addons/" + fileName);
+    const std::string filesdir = Path::getOptionalFilesDirPath(exename);
+    if (!filesdir.empty()) {
+        if (debug)
+            std::cout << "looking for addon '" << (filesdir + ("/" + fileName)) << "'" << std::endl;
+        if (Path::isFile(filesdir + ("/" + fileName)))
+            return filesdir + ("/" + fileName);
+        if (debug)
+            std::cout << "looking for addon '" << (filesdir + ("/addons/" + fileName)) << "'" << std::endl;
+        if (Path::isFile(filesdir + ("/addons/" + fileName)))
+            return FILESDIR + ("/addons/" + fileName);
+    }
 #endif
     return "";
 }

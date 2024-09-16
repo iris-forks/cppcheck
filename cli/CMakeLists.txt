@@ -75,15 +75,15 @@ if (BUILD_CLI)
         COMPONENT applications)
 
     install(FILES ${addons}
-       DESTINATION ${FILESDIR_DEF}/addons
+       DESTINATION ${ABSOLUTE_FILESDIR_DEF}/addons
        COMPONENT headers)
 
     install(FILES ${cfgs}
-       DESTINATION ${FILESDIR_DEF}/cfg
+       DESTINATION ${ABSOLUTE_FILESDIR_DEF}/cfg
        COMPONENT headers)
 
     install(FILES ${platforms}
-       DESTINATION ${FILESDIR_DEF}/platforms
+       DESTINATION ${ABSOLUTE_FILESDIR_DEF}/platforms
        COMPONENT headers)
 
 endif()

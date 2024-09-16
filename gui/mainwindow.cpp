@@ -903,7 +903,7 @@ Library::Error MainWindow::loadLibrary(Library &library, const QString &filename
 
 #ifdef FILESDIR
     // Try to load the library from FILESDIR/cfg..
-    const QString filesdir = FILESDIR;
+    const QString filesdir = getFilesDir();
     if (!filesdir.isEmpty()) {
         libpath = filesdir+"/cfg/"+filename;
         qDebug().noquote() << "looking for library '" + libpath + "'";

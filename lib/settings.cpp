@@ -69,11 +69,14 @@ std::string Settings::loadCppcheckCfg(Settings& settings, Suppressions& suppress
     std::string fileName;
 #ifdef FILESDIR
     {
-        const std::string filesdirCfg = Path::join(FILESDIR, cfgFilename);
-        if (debug)
-            std::cout << "looking for '" << filesdirCfg << "'" << std::endl;
-        if (Path::isFile(filesdirCfg))
-            fileName = filesdirCfg;
+        const std::string filesdir = Path::getOptionalFilesDirPath(settings.exename);
+        if (!filesdir.empty()) {
+            const std::string filesdirCfg = Path::join(filesdir, cfgFilename);
+            if (debug)
+                std::cout << "looking for '" << filesdirCfg << "'" << std::endl;
+            if (Path::isFile(filesdirCfg))
+                fileName = filesdirCfg;
+        }
     }
 #endif
     // cppcheck-suppress knownConditionTrueFalse
